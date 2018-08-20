@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
-import ContactData from './ContactData/ContactData';
+
 import CheckoutSummary from '../../components/Order/CheckoutSummary/CheckoutSummary';
+import ContactData from './ContactData/ContactData';
 
 class Checkout extends Component {
   state = {
@@ -14,8 +15,9 @@ class Checkout extends Component {
     const ingredients = {};
     let price = 0;
     for (let param of query.entries()) {
-      if (params[0] === 'price') {
-        price = params[1];
+      // ['salad', '1']
+      if (param[0] === 'price') {
+        price = param[1];
       } else {
         ingredients[param[0]] = +param[1];
       }

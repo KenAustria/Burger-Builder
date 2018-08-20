@@ -5,9 +5,9 @@ import Burger from '../../components/Burger/Burger';
 import BuildControls from '../../components/Burger/BuildControls/BuildControls';
 import Modal from '../../components/UI/Modal/Modal';
 import OrderSummary from '../../components/Burger/OrderSummary/OrderSummary';
-import axios from '../../axios-orders';
 import Spinner from '../../components/UI/Spinner/Spinner';
 import withErrorHandler from '../../hoc/withErrorHandler/withErrorHandler';
+import axios from '../../axios-orders';
 
 const INGREDIENT_PRICES = {
   salad: 0.5,
@@ -17,6 +17,10 @@ const INGREDIENT_PRICES = {
 };
 
 class BurgerBuilder extends Component {
+  // constructor(props) {
+  //     super(props);
+  //     this.state = {...}
+  // }
   state = {
     ingredients: null,
     totalPrice: 4,
@@ -27,12 +31,11 @@ class BurgerBuilder extends Component {
   };
 
   componentDidMount() {
+    console.log(this.props);
     axios
       .get('https://burgerbuilder-be355.firebaseio.com/ingredients.json')
       .then(response => {
-        this.setState({
-          ingredients: response.data
-        });
+        this.setState({ ingredients: response.data });
       })
       .catch(error => {
         this.setState({ error: true });
@@ -90,6 +93,8 @@ class BurgerBuilder extends Component {
   };
 
   purchaseContinueHandler = () => {
+    // alert('You continue!');
+
     const queryParams = [];
     for (let i in this.state.ingredients) {
       queryParams.push(
@@ -119,6 +124,7 @@ class BurgerBuilder extends Component {
     ) : (
       <Spinner />
     );
+
     if (this.state.ingredients) {
       burger = (
         <Aux>
@@ -145,6 +151,7 @@ class BurgerBuilder extends Component {
     if (this.state.loading) {
       orderSummary = <Spinner />;
     }
+    // {salad: true, meat: false, ...}
     return (
       <Aux>
         <Modal
