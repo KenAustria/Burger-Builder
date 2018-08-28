@@ -43,12 +43,6 @@ export const purchaseInit = () => {
   };
 };
 
-export const fetchOrdersStart = () => {
-  return {
-    type: actionTypes.FETCH_ORDERS_START
-  };
-};
-
 export const fetchOrdersSuccess = orders => {
   return {
     type: actionTypes.FETCH_ORDERS_SUCCESS,
@@ -63,7 +57,13 @@ export const fetchOrdersFail = error => {
   };
 };
 
-export const fetchOrder = () => {
+export const fetchOrdersStart = () => {
+  return {
+    type: actionTypes.FETCH_ORDERS_START
+  };
+};
+
+export const fetchOrders = () => {
   return dispatch => {
     dispatch(fetchOrdersStart());
     axios
