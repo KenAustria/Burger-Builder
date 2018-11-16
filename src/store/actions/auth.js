@@ -35,13 +35,12 @@ export const auth = (email, password, isSignup) => {
 			url = 'https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyPassword?key=AIzaSyDa6bimv5aJ3Ta5wY3aX8NjW4pz-wtVcz8';
 		}
 		axios.post(url, authData)
-		.then(response => {
-			console.log(response);
-			dispatch(authSuccess(response.data.idToken, response.data.localId));
-		})
-		.catch(err => {
-			console.log(err);
-			dispatch(authFail(err));
-		});
+			.then(response => {
+				console.log(response);
+				dispatch(authSuccess(response.data.idToken, response.data.localId));
+			})
+			.catch(err => {
+				dispatch(authFail(err.response.data.error));
+			});
 	};
 }
