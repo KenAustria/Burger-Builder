@@ -23,7 +23,7 @@ Completed project to advance my front-end web application knowledge, earning a [
 serve at ```localhost: 3000```
 
 ### Demo
-*Pending*
+![](https://media.giphy.com/media/7OWvhNBmAKF1kiF3Ta/giphy.gif)
 
 ### Unit Test
 *Pending*
