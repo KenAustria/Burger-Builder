@@ -23,11 +23,14 @@ class Layout extends Component {
   render() {
     return (
       <Aux>
-				<Toolbar drawerToggleClicked={this.sideDrawerToggleHandler} isAuth={this.props.authenticated} />
+        <Toolbar
+          isAuth={this.props.isAuthenticated}
+          drawerToggleClicked={this.sideDrawerToggleHandler}
+        />
         <SideDrawer
+          isAuth={this.props.isAuthenticated}
           open={this.state.showSideDrawer}
-					closed={this.sideDrawerClosedHandler}
-					isAuth={this.props.authenticated}
+          closed={this.sideDrawerClosedHandler}
         />
         <main className={classes.Content}>{this.props.children}</main>
       </Aux>
@@ -36,9 +39,9 @@ class Layout extends Component {
 }
 
 const mapStateToProps = state => {
-	return {
-		isAuthenticated: state.auth.token !== null
-	}
-}
+  return {
+    isAuthenticated: state.auth.token !== null
+  };
+};
 
-export default connect(mapStateToProps, null)(Layout);
+export default connect(mapStateToProps)(Layout);

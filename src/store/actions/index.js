@@ -4,7 +4,7 @@ export {
   initIngredients
 } from "./burgerBuilder";
 
-export { 
+export {
 	purchaseBurger,
 	purchaseInit,
 	fetchOrders
@@ -12,5 +12,7 @@ export {
 
 export {
 	auth,
-	logout
+	logout,
+	setAuthRedirectPath,
+	authCheckState
 } from "./auth";
