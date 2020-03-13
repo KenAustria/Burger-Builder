@@ -1,14 +1,16 @@
 # Burger Builder
+<img src="src/assets/images/burger-logo.png">  
 
 Ecommerce application for dynamically building burgers with the ability to create an order that is sent to Firebase. [Live Link](https://burgerbuilder-be355.firebaseapp.com/)
 
 ## Technologies
 
 • React  
-• Redux  
 • React Router  
-• Axios
-• Firebase  
+• Redux  
+• Redux Thunk  
+• Axios  
+• Firebase Database  
 • CSS Modules  
 
 ## Features
@@ -103,24 +105,30 @@ class BurgerIngredient extends Component {
 }
 ```
 
-### ⭐ Users can checkout with their order.
+### ⭐ Users can checkout with their order and view their order history.
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-
-![](https://media.giphy.com/media/2fuQuR500VXpdOdqeU/giphy.gif)
-
-```
-code
-```
-
-### ⭐ Users can view order history.
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+The orderHandler accesses the ingredients used and contact data of the user. We declare the formData host object that will take each formElementIdentifier of orderForm to assign to itself. The formData object will be assigned to the 'order' object, along with the ingredients and total price. The onOrderBurger action is then trigerred with the 'order' object and user's authenticated token passed in.  
 
 ![](https://media.giphy.com/media/2fuQuR500VXpdOdqeU/giphy.gif)
 
 ```
-code
+orderHandler = event => {
+  event.preventDefault();
+
+  const formData = {};
+  for (let formElementIdentifier in this.state.orderForm) {
+    formData[formElementIdentifier] = this.state.orderForm[
+      formElementIdentifier
+    ].value;
+  }
+  const order = {
+    ingredients: this.props.ings,
+    price: this.props.price,
+    orderData: formData
+  };
+
+  this.props.onOrderBurger(order, this.props.token);
+};
 ```
 
 ## Roadmap
